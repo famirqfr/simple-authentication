@@ -6,6 +6,7 @@ import { useAuth } from "@/features/auth/providers/AuthProvider";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Mail, Phone } from "lucide-react";
+import Image from "next/image";
 
 export default function DashboardPage() {
   const { user, isAuthenticated, logout, loading } = useAuth();
@@ -40,10 +41,13 @@ export default function DashboardPage() {
         <CardContent className="flex flex-col items-center gap-4">
           <div className="flex flex-col items-center gap-2">
             {user.picture && (
-              <img
+              <Image
                 src={user.picture}
                 alt={user.name}
                 className="h-20 w-20 rounded-full border border-border shadow"
+                width={80}
+                height={80}
+                priority
               />
             )}
             <div className="flex items-center gap-2 text-sm text-muted-foreground">

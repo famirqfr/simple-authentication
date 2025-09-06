@@ -48,11 +48,20 @@ export default function LoginForm() {
       setSubmitting(true);
       await loginWithPhone(values.mobile);
       router.push("/dashboard");
-    } catch (e: any) {
+    } catch (err: unknown) {
+      const message =
+        typeof err === "object" &&
+        err !== null &&
+        "message" in err &&
+        typeof (err as { message: unknown }).message === "string"
+          ? (err as { message: string }).message
+          : "";
+
       const msg =
-        e?.message === "INVALID_PHONE"
+        message === "INVALID_PHONE"
           ? "شماره موبایل نامعتبر است"
           : "خطا در ورود. دوباره تلاش کنید.";
+
       form.setError("mobile", { message: msg });
     } finally {
       setSubmitting(false);

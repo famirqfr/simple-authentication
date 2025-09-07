@@ -58,17 +58,8 @@ src/
 pnpm install
 ```
 
-> Make sure PostCSS is set up for Tailwind v4:
->
-> ```js
-> // postcss.config.js
-> export default {
->   plugins: { "@tailwindcss/postcss": {} },
-> };
-> ```
->
+> Make sure Tailwind v4 is set up for Project:
 > And in `globals.css`:
->
 > ```css
 > @import "tailwindcss";
 > /* theme tokens + base styles ... */

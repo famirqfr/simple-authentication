@@ -1,40 +1,40 @@
-حتماً! این محتوا رو عیناً داخل فایل `README.md` بذار:
-
-````markdown
 # 📱 Simple Auth App (Next.js + Tailwind)
 
-اپ نمونه‌ی **ورود با شماره موبایل ایران** با ذخیره‌سازی دیتای کاربر در **localStorage** و نمایش در **Dashboard**.  
-ساخته‌شده با **Next.js App Router + TypeScript + TailwindCSS v4** و کامپوننت‌های **shadcn/ui**.
+Sample app for **login with Iranian mobile number**, storing user data in **localStorage** and displaying it in a **Dashboard**.
+Built with **Next.js App Router + TypeScript + TailwindCSS v4** and **shadcn/ui** components.
 
 ---
 
 ## ✨ Features
-- ورود با موبایل ایران (فرمت‌های معتبر: `09xxxxxxxxx`، `+989xxxxxxxxx`، `00989xxxxxxxxx`)
-- اعتبارسنجی سمت کلاینت با **zod + react-hook-form**
-- فراخوانی API تستی: `https://randomuser.me/api/?results=1&nat=us`
-- ذخیره‌سازی `user` و `isAuthenticated` در **localStorage**
-- Dashboard با خوشامدگویی و دکمه **Logout** (پاک‌سازی storage و بازگشت به Login)
-- UI مدرن، ریسپانسیو (mobile-first)، دسترس‌پذیر
+
+* Login with Iranian mobile number (valid formats: `09xxxxxxxxx`, `+989xxxxxxxxx`, `00989xxxxxxxxx`)
+* Client-side validation using **zod + react-hook-form**
+* Test API call: `https://randomuser.me/api/?results=1&nat=us`
+* Store `user` and `isAuthenticated` in **localStorage**
+* Dashboard with welcome message and **Logout** button (clears storage and redirects to Login)
+* Modern, responsive (mobile-first), accessible UI
 
 ---
 
 ## ⚙️ Tech Stack
-- Next.js 15 (App Router) + TypeScript
-- Tailwind CSS v4 (فقط Tailwind برای استایل)
-- shadcn/ui (Button, Card, Input, Form)
-- react-hook-form + zod (ولیدیشن)
-- (اختیاری) zustand
+
+* Next.js 15 (App Router) + TypeScript
+* Tailwind CSS v4 (only Tailwind for styling)
+* shadcn/ui (Button, Card, Input, Form)
+* react-hook-form + zod (validation)
+* (Optional) zustand
 
 ---
 
 ## 📂 Project Structure
+
 ```bash
 src/
   app/
     layout.tsx              # Root layout + metadata
     globals.css             # Tailwind + theme tokens
-    login/page.tsx          # صفحه Login (فرم شماره ایران)
-    dashboard/page.tsx      # صفحه Dashboard
+    login/page.tsx          # Login page (Iran phone form)
+    dashboard/page.tsx      # Dashboard page
   components/
     ui/                     # Button, Card, Input, Form, ...
   features/
@@ -45,20 +45,20 @@ src/
       types.ts
       constants.ts
   lib/
-    iranPhone.ts            # اعتبارسنجی/نرمال‌سازی شماره ایران
-````
+    iranPhone.ts            # Iran phone validation/normalization
+```
 
 ---
 
 ## 🚀 Getting Started
 
-### 1) نصب
+### 1) Install
 
 ```bash
 pnpm install
 ```
 
-> مطمئن شوید PostCSS برای Tailwind v4 تنظیم شده:
+> Make sure PostCSS is set up for Tailwind v4:
 >
 > ```js
 > // postcss.config.js
@@ -67,20 +67,20 @@ pnpm install
 > };
 > ```
 >
-> و در `globals.css`:
+> And in `globals.css`:
 >
 > ```css
 > @import "tailwindcss";
 > /* theme tokens + base styles ... */
 > ```
 
-### 2) اجرا (Development)
+### 2) Run (Development)
 
 ```bash
 pnpm dev
 ```
 
-رفتن به: [http://localhost:3000](http://localhost:3000)
+Open: [http://localhost:3000](http://localhost:3000)
 
 ### 3) Build & Start (Production)
 
@@ -93,28 +93,28 @@ pnpm start
 
 ## 🔄 User Flow
 
-1. کاربر به `/login` می‌رود، شماره موبایل معتبر ایران را وارد می‌کند و **Login** را می‌زند.
-2. اپ از `randomuser.me` یک کاربر تستی می‌گیرد و همراه با شماره موبایل در **localStorage** ذخیره می‌کند.
-3. ریدایرکت به `/dashboard`.
-4. Dashboard پیام خوشامد با **نام کاربر** را نشان می‌دهد.
-5. دکمه **Logout** همه‌چیز را پاک می‌کند و کاربر را به `/login` برمی‌گرداند.
-6. اگر کاربر بدون ورود مستقیم به `/dashboard` برود → **redirect به `/login`**.
+1. User goes to `/login`, enters a valid Iranian phone number, and clicks **Login**.
+2. The app fetches a test user from `randomuser.me` and stores it along with the phone number in **localStorage**.
+3. Redirects to `/dashboard`.
+4. Dashboard shows a welcome message with the **user’s name**.
+5. **Logout** clears everything and redirects to `/login`.
+6. If the user tries to access `/dashboard` without being logged in → **redirect to `/login`**.
 
 ---
 
 ## 🧩 UI Components (Tailwind)
 
-* **Input**: همراه با Label، حالت خطا، focus style، و اعتبارسنجی.
-* **Button**: حالت primary، disabled، و loading (با `aria-busy`).
+* **Input**: with Label, error state, focus style, and validation.
+* **Button**: primary, disabled, and loading states (with `aria-busy`).
 
 ---
 
 ## ♿ Accessibility
 
-* ارتباط `label` با `input` (با `htmlFor`)
-* `aria-invalid` برای پیام خطا
-* `focus-visible` states واضح
-* کنتراست مناسب با theme tokens
+* Connect `label` with `input` (via `htmlFor`)
+* `aria-invalid` for error messages
+* Clear `focus-visible` states
+* Proper contrast using theme tokens
 
 ---
 
@@ -135,22 +135,17 @@ pnpm start
 
 ## ✅ Acceptance Criteria
 
-* [ ] ورودی موبایل فقط سه فرمت مجاز را قبول کند و پیام خطای مناسب بدهد.
-* [ ] کلیک روی Login تا وقتی ورودی معتبر نیست، API نزند.
-* [ ] ذخیره‌ی `{ name, email, picture, phone }` در `localStorage.user` و `isAuthenticated=true`.
-* [ ] ورود به `/dashboard` بدون داده‌ی کاربر → redirect به `/login`.
-* [ ] Logout → پاک‌سازی کامل و بازگشت به Login.
-* [ ] UI ریسپانسیو و دسترس‌پذیر (focus/disabled/loading درست).
-* [ ] کد تمیز، نام‌گذاری یکدست، پوشه‌بندی feature-based.
+* [ ] Phone input only accepts the three valid formats and shows proper error messages.
+* [ ] Clicking Login does not trigger API unless input is valid.
+* [ ] Save `{ name, email, picture, phone }` in `localStorage.user` and set `isAuthenticated=true`.
+* [ ] Accessing `/dashboard` without user data → redirect to `/login`.
+* [ ] Logout → fully clear data and return to Login.
+* [ ] Responsive, accessible UI (focus/disabled/loading states work correctly).
+* [ ] Clean code, consistent naming, feature-based folder structure.
 
 ---
 
 ## 📝 Notes
 
-* برای RTL می‌توانید در `layout.tsx` از `<html lang="fa" dir="rtl">` استفاده کنید.
-* theme tokens (مثل `--background`, `--foreground`, `--input`, `--ring`) در `globals.css` تنظیم شده تا کامپوننت‌های shadcn ظاهری سازگار داشته باشند.
-
----
-
-```
-```
+* For RTL support, you can use `<html lang="fa" dir="rtl">` in `layout.tsx`.
+* Theme tokens (e.g., `--background`, `--foreground`, `--input`, `--ring`) are set in `globals.css` so shadcn components look consistent.
